@@ -62,7 +62,7 @@
     },
 
 
-/*
+    /*
          _             _     _
      ___| |_ __ _ _ __| |_  | |__   ___ _ __ ___ _
     / __| __/ _` | '__| __| | '_ \ / _ \ '__/ _ (_)
@@ -173,11 +173,57 @@
     //
     // test if a specific major diagonal on this board contains a conflict
     hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
+      // create chessboard with this.rows()
+      // debugger;
+      let chessBoard = this.rows();
+      let rowIndex = 0;
+      let colIndex = majorDiagonalColumnIndexAtFirstRow; //-3
+
+      // create count and initialize 0
+      let count = 0;
+
+      // iterate over the chessboard (nested for loops)
+      for (let i = 0; i < chessBoard.length; i++) {
+
+
+        // for (let j = colIndex; j < chessBoard.length; j++) {
+        //   if the element is 1 (stop the current inner array --continue)
+        if (colIndex < 0) {
+          rowIndex++;
+          colIndex++;
+          // ***
+          continue;
+        }
+        if (chessBoard[rowIndex][colIndex] === 1) {
+          //   we are going to move to next inner array & find [+1][+1]
+          count++; // 1
+        }
+
+        if (count > 1) {
+          //   if the value of that position is 1 => conflict
+          return true;
+        }
+        rowIndex++;
+        colIndex++;
+        // }
+      }
+      //    repeat
       return false; // fixme
     },
 
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
+      //Create a chessBoard variable
+      let chessBoard = this.rows();
+      let length = chessBoard.length - 1;
+      //iterate over the chessBoard
+      for (let i = 0 - length; i < length; i++) {
+        //If hasMajorDiagonalConflictsAt(i)
+        if (this.hasMajorDiagonalConflictAt(i)) {
+          //  If true, return true
+          return true;
+        }
+      }
       return false; // fixme
     },
 
@@ -188,12 +234,54 @@
     //
     // test if a specific minor diagonal on this board contains a conflict
     hasMinorDiagonalConflictAt: function(minorDiagonalColumnIndexAtFirstRow) {
+
+      // create chessboard
+      let chessboard = this.rows();
+      // create row index(0) and col index(minorDiagonalColumnIndexAtFirstRow)
+      let rowIndex = 0;
+      let colIndex = minorDiagonalColumnIndexAtFirstRow;
+      // set count variable
+      let count = 0;
+
+      // iterate over the chessboard
+      for (let i = 0; i < chessboard.length; i++) {
+        if (colIndex < 0) {
+          rowIndex++;
+          colIndex--;
+          // ***
+          continue;
+        }
+
+        // if element at row index & col index is equal to 1
+        if (chessboard[rowIndex][colIndex] === 1) {
+          //   increment the count
+          count++;
+        }
+        if (count > 1) {
+          return true;
+        }
+        rowIndex++;
+        colIndex--;
+      }
+      // if they didn't fine true unntil the end, return false
       return false; // fixme
     },
 
     // test if any minor diagonals on this board contain conflicts
     hasAnyMinorDiagonalConflicts: function() {
-      return false; // fixme
+      // debugger;
+      //Create a chessBoard variable
+      let chessBoard = this.rows();
+      let length = (chessBoard.length * 2);
+      //iterate over the chessBoard
+      for (let i = 0; i < length; i++) {
+        //If hasMajorDiagonalConflictsAt(i)
+        if (this.hasMinorDiagonalConflictAt(i)) {
+          //  If true, return true
+          return true;
+        }
+      }
+      return false; // fixme // fixme
     }
 
     /*--------------------  End of Helper Functions  ---------------------*/
