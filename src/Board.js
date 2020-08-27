@@ -79,11 +79,43 @@
     //
     // test if a specific row on this board contains a conflict
     hasRowConflictAt: function(rowIndex) {
-      return false; // fixme
+      //create a variable to represent current row and assign it to this.get(rowIndex)
+      // console.log(this.rows());
+
+      let row = this.get(rowIndex);
+
+      //create a count variable to keep track of how many (rooks, queens) are in the row
+      let count = 0;
+
+      //Iterate over the row
+      for (let i = 0; i < row.length; i++) {
+        //  If element is equal to 1
+        if (row[i] === 1) {
+          //  Increment Count by 1
+          count++;
+        }
+        //if (count > 1) --> return true
+        if (count > 1) {
+          return true;
+        }
+
+      }
+      // Return false (placeholder)
+      return false;
     },
 
     // test if any rows on this board contain conflicts
     hasAnyRowConflicts: function() {
+      var chessBoard = this.rows();
+      // console.log(chessBoard);
+      //we can iterate over the chessBoard
+      for (var i = 0; i < chessBoard.length; i++) {
+        //  passing inner array to  hasRowConflictAt method
+        if (this.hasRowConflictAt(i)) {
+          //  If true --> return true;
+          return true;
+        }
+      }
       return false; // fixme
     },
 
@@ -94,11 +126,43 @@
     //
     // test if a specific column on this board contains a conflict
     hasColConflictAt: function(colIndex) {
+      // set var for column, count
+      let chessBoard = this.rows();
+
+      let count = 0;
+      // iterate over column
+      for (var i = 0; i < chessBoard.length; i++) {
+        // if element is one
+        if (chessBoard[i][colIndex] === 1) {
+          // increment count
+          count++;
+        }
+        // if count is greater than 1
+        if (count > 1) {
+          // return true;
+          return true;
+        }
+      }
+      // return false;
       return false; // fixme
     },
 
     // test if any columns on this board contain conflicts
     hasAnyColConflicts: function() {
+      // debugger;
+      // create chessboard var and assign this.row()
+      let chessBoard = this.rows();
+      // iterate over the chessboard
+      for (let i = 0; i < chessBoard.length; i++) {
+        for (let j = 0; j < chessBoard.length; j++) {
+        // passing each column to hasColConflictAt();
+          if (this.hasColConflictAt(chessBoard[i][j])) { // 0,
+            // if hasColConflictAt(i) is true
+            // return true
+            return true;
+          }
+        }
+      }
       return false; // fixme
     },
 
