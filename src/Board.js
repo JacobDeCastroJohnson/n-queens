@@ -188,12 +188,12 @@
 
         // for (let j = colIndex; j < chessBoard.length; j++) {
         //   if the element is 1 (stop the current inner array --continue)
-        if (colIndex < 0) {
-          rowIndex++;
-          colIndex++;
-          // ***
-          continue;
-        }
+        // if (colIndex < 0) {
+        //   rowIndex++;
+        //   colIndex++;
+        //   // ***
+        //   continue;
+        // }
         if (chessBoard[rowIndex][colIndex] === 1) {
           //   we are going to move to next inner array & find [+1][+1]
           count++; // 1
@@ -245,12 +245,14 @@
 
       // iterate over the chessboard
       for (let i = 0; i < chessboard.length; i++) {
-        if (colIndex < 0) {
-          rowIndex++;
-          colIndex--;
-          // ***
-          continue;
-        }
+        // if (colIndex < 0) {
+        //   // rowIndex--;
+        //   // colIndex = colIndex + 2;
+        //   rowIndex++;
+        //   colIndex--;
+        //   // ***
+        //  continue;
+        // }
 
         // if element at row index & col index is equal to 1
         if (chessboard[rowIndex][colIndex] === 1) {
@@ -273,7 +275,7 @@
       //Create a chessBoard variable
       let chessBoard = this.rows();
       let length = (chessBoard.length * 2);
-      //iterate over the chessBoard
+      // iterate over the chessBoard
       for (let i = 0; i < length; i++) {
         //If hasMajorDiagonalConflictsAt(i)
         if (this.hasMinorDiagonalConflictAt(i)) {
